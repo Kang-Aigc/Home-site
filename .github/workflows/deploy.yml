@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
-# 本仓库只存放 Home 站点的构建产物（由 Kang-Aigc/Home 源码仓的 Actions 自动推送）。
-# 不要在此仓库手工修改文件，下次发布会整体覆盖。
-# Build output generated from the private source repository; do not edit by hand.
+# 本文件由源码仓 Kang-Aigc/Home 的发布流水线自动写入 Home-site，请勿在本仓库手工修改。
+# This workflow file is managed by the private source repository; do not edit here.
+#
+# 本仓库只存放 Home 站点的构建产物（out/），不要手工改文件，下次发布会整体覆盖。
 
 on:
   push:
