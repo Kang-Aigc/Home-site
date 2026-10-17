@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+# 本仓库只存放 Home 站点的构建产物（由 Kang-Aigc/Home 源码仓的 Actions 自动推送）。
+# 不要在此仓库手工修改文件，下次发布会整体覆盖。
+# Build output generated from the private source repository; do not edit by hand.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
